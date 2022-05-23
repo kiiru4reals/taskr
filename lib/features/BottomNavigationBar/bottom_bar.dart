@@ -62,7 +62,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           child: BottomNavigationBar(
             onTap: _selectedPage,
             backgroundColor: Theme.of(context).primaryColor,
-            unselectedItemColor: Theme.of(context).textSelectionColor,
+            unselectedItemColor: Theme.of(context).unselectedWidgetColor,
             selectedItemColor: Colors.purple,
             currentIndex: _selectedIndex,
             selectedLabelStyle: TextStyle(fontSize: 15),
@@ -77,15 +77,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 tooltip: 'Saved links',
                 label: 'Saved links',
               ),
-            /*  BottomNavigationBarItem(
-                activeIcon: null,
-                icon: Icon(null), // Icon(
-                //   Icons.search,
-                //   color: Colors.transparent,
-                // ),
-                tooltip: 'Search',
-                label: 'Search',
-              ),*/
               BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_month_outlined),
                 tooltip: 'Tasks',
