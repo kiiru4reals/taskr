@@ -23,9 +23,11 @@ class _SharedRemindersState extends State<SharedReminders> {
         ),
         ListTileSwitch(
           value: _value,
-          onChanged: (bool value) { setState(() {
-            value = true;
-          }); },
+          onLongPress: (){
+            final snackBar = SnackBar(content: Text("Feature coming soon. Stay tuned :)"));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          },
+          onChanged: (bool value){},
           switchActiveColor: Colors.indigo,
           title: Text("Notifications"),
           subtitle: Text("Get notified when someone else add of completes a reminder"),
