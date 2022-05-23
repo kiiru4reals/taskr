@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/config.dart';
 import 'package:soluprov/core/date_utils.dart';
 import 'package:soluprov/models/event_model.dart';
 import 'package:soluprov/provider/event_provider.dart';
@@ -18,18 +18,32 @@ class AddTasks extends StatefulWidget {
 class _AddTasksState extends State<AddTasks> {
   late DateTime fromDate;
   late DateTime toDate;
+  late bool _isAllDay = false;
   final _formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
+  // For priority
+  List? _priorities;
+  int _selectedIndex = 0;
+
   @override
   void initState() {
+    // We fill the values for priority
+    _priorities = ["Low", "Medium", "High"];
+
     super.initState();
 
     if (widget.event == null) {
       fromDate = DateTime.now();
       toDate = DateTime.now().add(Duration(hours: 2));
     }
+  }
+
+  void _selectedPriority(int index){
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -50,7 +64,9 @@ class _AddTasksState extends State<AddTasks> {
     }
   }
 
-  Future<DateTime?> pickDateTime(DateTime initialDate, {
+
+  Future<DateTime?> pickDateTime(
+    DateTime initialDate, {
     required bool pickDate,
     DateTime? firstDate,
   }) async {
@@ -63,7 +79,7 @@ class _AddTasksState extends State<AddTasks> {
       if (date == null) return null;
 
       final time =
-      Duration(hours: initialDate.hour, minutes: initialDate.minute);
+          Duration(hours: initialDate.hour, minutes: initialDate.minute);
 
       return date.add(time);
     } else {
@@ -71,7 +87,7 @@ class _AddTasksState extends State<AddTasks> {
           context: context, initialTime: TimeOfDay.fromDateTime(initialDate));
       if (timeOfDay == null) return null;
       final date =
-      DateTime(initialDate.year, initialDate.month, initialDate.day);
+          DateTime(initialDate.year, initialDate.month, initialDate.day);
       final time = Duration(hours: timeOfDay.hour, minutes: timeOfDay.minute);
       return date.add(time);
     }
@@ -80,21 +96,20 @@ class _AddTasksState extends State<AddTasks> {
   Future _saveForm() async {
     final _isvalid = _formKey.currentState!.validate();
 
-    if(_isvalid) {
+    if (_isvalid) {
       final event = Event(
         title: titleController.text,
         startDateTime: fromDate,
         toDateTime: toDate,
         description: descriptionController.text,
-        isAllDay: false,
+        isAllDay: _isAllDay,
         priority: "Low",
       );
 
       final provider = Provider.of<EventProvider>(context, listen: false);
       provider.addEvent(event);
-      
-      Navigator.of(context).pop();
 
+      Navigator.of(context).pop();
     }
   }
 
@@ -104,178 +119,188 @@ class _AddTasksState extends State<AddTasks> {
         appBar: AppBar(
           actions: [
             ElevatedButton.icon(
-                onPressed: _saveForm, icon: Icon(Icons.done), label: Text("Save"))
+                onPressed: _saveForm,
+                icon: Icon(Icons.done),
+                label: Text("Save"))
           ],
         ),
         body: SingleChildScrollView(
           child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
+            padding: const EdgeInsets.all(12.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
                   TextFormField(
                     onFieldSubmitted: (_) => _saveForm(),
-                  controller: titleController,
-                  validator: (title) =>
-                  title != null && title.isEmpty
-                      ? "Event must have a name"
-                      : null,
-                  decoration: InputDecoration(
-                    border: UnderlineInputBorder(),
-                    hintText: "Laundry",
-                    label: Text("Task name"),
+                    controller: titleController,
+                    validator: (title) => title != null && title.isEmpty
+                        ? "Event must have a name"
+                        : null,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(),
+                      hintText: "Laundry",
+                      label: Text("Task name"),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                TextFormField(
-                  controller: descriptionController,
-                  decoration: InputDecoration(
-                    label: Text("Task description"),
-                    border: UnderlineInputBorder(),
-                    hintText: "Wash my clothes",
+                  SizedBox(
+                    height: 5,
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "From",
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      ),
+                  TextFormField(
+                    controller: descriptionController,
+                    decoration: InputDecoration(
+                      label: Text("Task description"),
+                      border: UnderlineInputBorder(),
+                      hintText: "Enter description",
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 2,
-                            child: DateDropDownField(
-                              text: DateUtil.toDate(fromDate),
-                              onClicked: () =>
-                                  pickFromDateTime(pickDate: true),
-                            )),
-                        Expanded(
-                            child: DateDropDownField(
-                              text: DateUtil.toTime(fromDate),
-                              onClicked: () =>
-                                  pickFromDateTime(pickDate: false),
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "To",
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 2,
-                            child: DateDropDownField(
-                              text: DateUtil.toDate(toDate),
-                              onClicked: () =>
-                                  pickFromDateTime(pickDate: true),
-                            )),
-                        Expanded(
-                            child: DateDropDownField(
-                              text: DateUtil.toTime(toDate),
-                              onClicked: () =>
-                                  pickFromDateTime(pickDate: false),
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-                Column(
+                  ),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Priority",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
-                ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "From",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              flex: 2,
+                              child: DateDropDownField(
+                                text: DateUtil.toDate(fromDate),
+                                onClicked: () =>
+                                    pickFromDateTime(pickDate: true),
+                              )),
+                          Expanded(
+                              child: DateDropDownField(
+                            text: DateUtil.toTime(fromDate),
+                            onClicked: () => pickFromDateTime(pickDate: false),
+                          )),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "To",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              flex: 2,
+                              child: DateDropDownField(
+                                text: DateUtil.toDate(toDate),
+                                onClicked: () =>
+                                    pickFromDateTime(pickDate: true),
+                              )),
+                          Expanded(
+                              child: DateDropDownField(
+                            text: DateUtil.toTime(toDate),
+                            onClicked: () => pickFromDateTime(pickDate: false),
+                          )),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Priority",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * .3,
+                              child: OutlinedButton(
+                                  onPressed: () {},
+                                  child: Text("Low"),
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: Colors.green,
+                                    ),
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
+                                    ),
+                                  )),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * .3,
+                              child: OutlinedButton(
+                                  onPressed: () {},
+                                  child: Text("Medium"),
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: Colors.orangeAccent,
+                                    ),
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
+                                    ),
+                                  )),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * .3,
+                              child: OutlinedButton(
+                                  onPressed: () {},
+                                  child: Text("High"),
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: Colors.red,
+                                    ),
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
+                                    ),
+                                  )),
+                            ),
+                          ]),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      ListTileSwitch(
+                        value: _isAllDay,
+                        onChanged: (value) {
+                          setState(() {
+                            _isAllDay = value;
+                          });
+                        },
+                        switchActiveColor: Colors.indigo,
+                        title: Text("All day event?"),
+                        visualDensity: VisualDensity.comfortable,
+                      ),
+                    ],
+                  )
+                ],
               ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width*.3,
-                    child: OutlinedButton(onPressed: ()
-              {},
-              child: Text("Low"),
-              style: OutlinedButton.styleFrom(
-
-                side: BorderSide(
-                    color: Colors.green,
-                ),
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-              )
+            ),
           ),
-                  ),
-                Container(
-                  width: MediaQuery.of(context).size.width*.3,
-                  child: OutlinedButton(onPressed: ()
-                  {},
-                      child: Text("Medium"),
-                      style: OutlinedButton.styleFrom(
-
-                        side: BorderSide(
-                          color: Colors.orangeAccent,
-                        ),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                        ),
-                      )
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width*.3,
-                  child: OutlinedButton(onPressed: ()
-                  {},
-                      child: Text("High"),
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(
-                          color: Colors.red,
-                        ),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                        ),
-                      )
-                  ),
-                ),
-        ]),
-    ],
-    ),
-    ],
-    ),
-    ),
-    )
-    ,
-    )
-    );
+        ));
   }
 }
 
