@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:provider/provider.dart';
+import 'package:soluprov/provider/settings/settings_provider.dart';
 
 class Presets extends StatefulWidget {
   const Presets({Key? key}) : super(key: key);
@@ -11,7 +13,9 @@ class Presets extends StatefulWidget {
 class _PresetsState extends State<Presets> {
   @override
   Widget build(BuildContext context) {
-    bool _value = true;
+    final provider = Provider.of<SettingsProvider>(context);
+    provider.presetsTime;
+    provider.presetsPlace;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,18 +26,18 @@ class _PresetsState extends State<Presets> {
           color: Colors.grey),),
         ),
         ListTileSwitch(
-          value: _value,
-          onChanged: (bool value) { setState(() {
-          value = true;
+          value: provider.presetsTime,
+          onChanged: (value) { setState(() {
+            provider.presetsTime = value;
         }); },
           switchActiveColor: Colors.indigo,
           title: Text("Time"),
           visualDensity: VisualDensity.comfortable,
         ),
         ListTileSwitch(
-          value: _value,
-          onChanged: (bool value) { setState(() {
-            value = true;
+          value: provider.presetsPlace,
+          onChanged: (value) { setState(() {
+            provider.presetsPlace = value;
           }); },
           switchActiveColor: Colors.indigo,
           title: Text("Place"),
