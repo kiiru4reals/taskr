@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:soluprov/features/homepage/card.dart';
-import 'package:soluprov/features/homepage/progress_card.dart';
+import 'package:soluprov/features/homepage/progress_tracker_card.dart';
+import 'package:soluprov/features/homepage/priorities_card.dart';
 import 'package:soluprov/features/homepage/tasks.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,11 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
           //   fit: BoxFit.cover,),
           // ),
           actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.add),
-              color: Colors.black45,
-            ),
             CircleAvatar(
               radius: 27,
               backgroundColor: Colors.grey,
