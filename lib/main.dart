@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:soluprov/config.dart';
 import 'package:soluprov/features/BottomNavigationBar/bottom_bar.dart';
 import 'package:soluprov/features/homepage/home_screen.dart';
+import 'package:soluprov/models/event_model.dart';
+import 'package:soluprov/models/settings_model.dart';
 import 'package:soluprov/provider/event_provider.dart';
 
 late Box events;
@@ -12,9 +14,9 @@ late Box settings;
  Future main() async{
    WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(EventAdapter());
+  Hive.registerAdapter(SettingsAdapter());
   // info = await Hive.openBox('info');
-  events = await Hive.openBox('events');
-  settings = await Hive.openBox('settings');
   runApp(const MyApp());
 }
 

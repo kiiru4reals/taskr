@@ -17,7 +17,7 @@ class _DayAgendaState extends State<DayAgenda> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<EventProvider>(context);
-    final selectedEvents = provider.eventOfSelectedDate;
+    final selectedEvents = provider.eventHiveBox;
 
     if (selectedEvents.isEmpty) {
       return Center(
@@ -60,7 +60,7 @@ class _DayAgendaState extends State<DayAgenda> {
     final event = details.appointments.first;
     return Container(
       decoration: BoxDecoration(
-        color: event.backgroundColor.withOpacity(.5),
+        color: Colors.green.withOpacity(.5),
         borderRadius: BorderRadius.circular(12.0),
       ),
       width: details.bounds.width,
