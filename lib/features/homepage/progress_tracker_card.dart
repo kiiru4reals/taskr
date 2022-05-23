@@ -1,6 +1,8 @@
 import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:soluprov/config.dart';
+import 'package:soluprov/provider/event_provider.dart';
 
 class MainTaskscard extends StatefulWidget {
   const MainTaskscard({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class MainTaskscard extends StatefulWidget {
 class _MainTaskscardState extends State<MainTaskscard> {
   @override
   Widget build(BuildContext context) {
+    final eventsProvider = Provider.of<EventProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Card(
@@ -36,7 +39,7 @@ class _MainTaskscardState extends State<MainTaskscard> {
                   ),
                   Column(
                     children: [
-                      Text("7 tasks completed",
+                      Text('You have ${eventsProvider.events.length} tasks to do.' ,
                         style: Config.smallTextStyle),
                     ],
                   ),
@@ -45,14 +48,25 @@ class _MainTaskscardState extends State<MainTaskscard> {
               SizedBox(width: 15,),
               SizedBox(
                 width: 85,
-                child: CircleProgressBar(
+                child: eventsProvider.events.length == 0 ? CircleProgressBar(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.black12,
+                  value: 0,
+                  child:  Center(
+                    child: AnimatedCount(
+                      unit: '%',
+                      count: 0, style: TextStyle(color: Colors.white),
+                      duration: Duration(milliseconds: 500),
+                    ),
+                  ),
+                ) : CircleProgressBar(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.black12,
                   value: .65,
-                  child: Center(
+                  child:  Center(
                     child: AnimatedCount(
-                      count: 65, style: TextStyle(color: Colors.white),
                       unit: '%',
+                      count: 65, style: TextStyle(color: Colors.white),
                       duration: Duration(milliseconds: 500),
                     ),
                   ),
