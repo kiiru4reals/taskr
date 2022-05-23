@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soluprov/config.dart';
 import 'package:soluprov/features/settings/widgets/general_settings.dart';
 import 'package:soluprov/features/settings/widgets/presets.dart';
 import 'package:soluprov/features/settings/widgets/shared_reminders.dart';
