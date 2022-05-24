@@ -1,10 +1,22 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:soluprov/main.dart';
+import 'package:soluprov/models/settings_model.dart';
 
 class SettingsProvider extends ChangeNotifier {
+
+  List<SettingsModel> _settings = [];
+  UnmodifiableListView<SettingsModel> get settings => UnmodifiableListView(_settings);
+
   // Define boxes
   final String settingsHiveBox = "settings-box";
+
+/*  // Add default settings to Hive
+  Future<void> addInitialSettings (SettingsModel settings) async {
+    Box<SettingsModel> box = await Hive.openBox(settingsHiveBox);
+  }
 
   // presets time
   bool _presetstime = true;
@@ -14,6 +26,7 @@ class SettingsProvider extends ChangeNotifier {
   set presetsTime(bool value) {
     _presetstime = value;
     Box box = Hive.box(settingsHiveBox);
+    Hive.openBox(settingsHiveBox);
     box.put("time", _presetstime);
     notifyListeners();
   }
@@ -21,14 +34,16 @@ class SettingsProvider extends ChangeNotifier {
   // presets place
   bool _presetsPlace = true;
 
-  bool get presetsPlace => _presetsPlace;
+  bool get presetsPlace => _presetsPlace;*/
 
-  set presetsPlace(bool value) {
-    _presetsPlace = value;
-    Box box = Hive.box(settingsHiveBox);
-    box.put("place", _presetsPlace);
+
+  Future<void> getSettings() async {
+    Box<SettingsModel> box = await Hive.openBox<SettingsModel>(settingsHiveBox);
+    _settings = box.values.toList();
     notifyListeners();
   }
+
+
 
   // show reminder on app screen
   bool _showreminderonappScreen = true;
