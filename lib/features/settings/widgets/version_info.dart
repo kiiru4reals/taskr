@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soluprov/config.dart';
+import 'package:soluprov/core/config.dart';
 
 class VersionInfo extends StatelessWidget {
   const VersionInfo({Key? key}) : super(key: key);

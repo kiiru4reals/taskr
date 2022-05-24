@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/config.dart';
+import 'package:soluprov/core/config.dart';
 import 'package:soluprov/features/events/routes/event_details.dart';
 import 'package:soluprov/models/event_model.dart';
 import 'package:soluprov/provider/event_provider.dart';
@@ -32,29 +32,40 @@ class _TasksState extends State<Tasks> {
               ),
             )
           : ListView.builder(
-        itemCount: eventsProvider.events.length,
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context, int index){
-          Event event = eventsProvider.events[index];
-         return Material(
-           color: Colors.transparent,
-           child: InkWell(
-             splashColor: Colors.black12,
-             child: ListTile(
-               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsScreen(event: event,))),
-               title: Text(
-                 event.title,
-                 style: Config.listTileTitleStyling,
-               ),
-               subtitle: Text(
-                 "",
-                 style: Config.listTileSubtitleStyling,
-               ),
-             ),
-           ),
-         );
-        }
-          ),
+              itemCount: eventsProvider.events.length,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                Event event = eventsProvider.events[index];
+                return Dismissible(
+                  key: ObjectKey(event),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) => eventsProvider.deleteEvents(event),
+                  background: Container(
+                    alignment: Alignment.centerLeft,
+                    color: Colors.red,
+                    child: Icon(Icons.delete_forever, color: Colors.white, size: 20,),
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      splashColor: Colors.black12,
+                      child: ListTile(
+                        onTap:
+                            () {} /*=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsScreen(event: event,)))*/,
+                        title: Text(
+                          event.title,
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),),
+                        subtitle: Text(
+                          "",
+                          style: Config.listTileSubtitleStyling,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
     ]);
   }
 }
