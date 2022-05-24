@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:soluprov/config.dart';
+import 'package:soluprov/features/events/routes/event_details.dart';
+import 'package:soluprov/models/event_model.dart';
+import 'package:soluprov/provider/event_provider.dart';
 
 class Tasks extends StatefulWidget {
   const Tasks({Key? key}) : super(key: key);
@@ -11,92 +15,46 @@ class Tasks extends StatefulWidget {
 class _TasksState extends State<Tasks> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
+    final eventsProvider = Provider.of<EventProvider>(context);
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text("Tasks", style: Config.titleTextStyleonBlack),
+        child: Text("Tasks", style: Config.listTileTitleStyling),
       ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.black12,
-            child: ListTile(
-              trailing: Icon(Icons.chevron_right, size: 40,),
-              onTap: (){},
-              title: Text("Task one ", style: Config.listTileTitleStyling,),
-              subtitle: Text("Some more basic information about this particular reminder", style: Config.listTileSubtitleStyling ,),
-            ),
-
+      eventsProvider.events.length == 0
+          ? Center(
+              child: Text(
+                "No tasks at the moment",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400),
+              ),
+            )
+          : ListView.builder(
+        itemCount: eventsProvider.events.length,
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index){
+          Event event = eventsProvider.events[index];
+         return Material(
+           color: Colors.transparent,
+           child: InkWell(
+             splashColor: Colors.black12,
+             child: ListTile(
+               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsScreen(event: event,))),
+               title: Text(
+                 event.title,
+                 style: Config.listTileTitleStyling,
+               ),
+               subtitle: Text(
+                 "",
+                 style: Config.listTileSubtitleStyling,
+               ),
+             ),
+           ),
+         );
+        }
           ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.black12,
-            child: ListTile(
-              trailing: Icon(Icons.chevron_right, size: 40,),
-              onTap: (){},
-              title: Text("Task one ", style: Config.listTileTitleStyling,),
-              subtitle: Text("Some more basic information about this particular reminder", style: Config.listTileSubtitleStyling ,),
-            ),
-
-          ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.black12,
-            child: ListTile(
-              trailing: Icon(Icons.chevron_right, size: 40,),
-              onTap: (){},
-              title: Text("Task one ", style: Config.listTileTitleStyling,),
-              subtitle: Text("Some more basic information about this particular reminder", style: Config.listTileSubtitleStyling ,),
-            ),
-
-          ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.black12,
-            child: ListTile(
-              trailing: Icon(Icons.chevron_right, size: 40,),
-              onTap: (){},
-              title: Text("Task one ", style: Config.listTileTitleStyling,),
-              subtitle: Text("Some more basic information about this particular reminder", style: Config.listTileSubtitleStyling ,),
-            ),
-
-          ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.black12,
-            child: ListTile(
-              trailing: Icon(Icons.chevron_right, size: 40,),
-              onTap: (){},
-              title: Text("Task one ", style: Config.listTileTitleStyling,),
-              subtitle: Text("Some more basic information about this particular reminder", style: Config.listTileSubtitleStyling ,),
-            ),
-
-          ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.black12,
-            child: ListTile(
-              trailing: Icon(Icons.chevron_right, size: 40,),
-              onTap: (){},
-              title: Text("Task one ", style: Config.listTileTitleStyling,),
-              subtitle: Text("Some more basic information about this particular reminder", style: Config.listTileSubtitleStyling ,),
-            ),
-
-          ),
-        ),
-    ]
-    );
+    ]);
   }
 }
