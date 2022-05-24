@@ -1,5 +1,4 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:soluprov/models/event_model.dart';
@@ -19,7 +18,7 @@ class EventProvider extends ChangeNotifier {
 
   // List<Event> get eventOfSelectedDate => _events;
   // Add events
-  Future <void> addEvent(Event event) async{
+  Future <void> addEvent(Event event) async {
     Box<Event> box = await Hive.openBox<Event>(eventHiveBox);
     await box.add(event);
     _events.add(event);
@@ -28,19 +27,17 @@ class EventProvider extends ChangeNotifier {
   }
 
   // Retrieve events
-Future <void> getEvents() async{
+  Future<void> getEvents() async {
     Box<Event> box = await Hive.openBox<Event>(eventHiveBox);
     _events = box.values.toList();
     notifyListeners();
-}
+  }
 
 // Delete events
-
-Future <void> deleteEvents(Event event) async{
+  Future<void> deleteEvents(Event event) async {
     Box<Event> box = await Hive.openBox<Event>(eventHiveBox);
     await box.delete(event.key);
     _events = box.values.toList();
     notifyListeners();
-}
-
+  }
 }
