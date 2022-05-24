@@ -20,7 +20,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   void initState() {
     _pages = [
       HomeScreen(),
-      SavedLinks(),
+      // SavedLinks(),
       CollectiveEvents(),
       Settings()
     ];
@@ -61,7 +61,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               )),
           child: BottomNavigationBar(
             onTap: _selectedPage,
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.white,
             unselectedItemColor: Theme.of(context).unselectedWidgetColor,
             selectedItemColor: Colors.purple,
             currentIndex: _selectedIndex,
@@ -72,11 +72,11 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 tooltip: 'Home',
                 label: 'Home',
               ),
-              BottomNavigationBarItem(
+              /*BottomNavigationBarItem(
                 icon: Icon(Icons.link_outlined),
                 tooltip: 'Saved links',
                 label: 'Saved links',
-              ),
+              ),*/
               BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_month_outlined),
                 tooltip: 'Tasks',
