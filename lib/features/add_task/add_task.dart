@@ -40,7 +40,7 @@ class _AddTasksState extends State<AddTasks> {
     }
   }
 
-  void _selectedPriority(int index){
+  void _selectedPriority(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -63,7 +63,6 @@ class _AddTasksState extends State<AddTasks> {
           DateTime(date.year, date.month, date.day, toDate.hour, toDate.minute);
     }
   }
-
 
   Future<DateTime?> pickDateTime(
     DateTime initialDate, {
@@ -97,19 +96,25 @@ class _AddTasksState extends State<AddTasks> {
     final _isvalid = _formKey.currentState!.validate();
 
     if (_isvalid) {
-      final event = Event(
+/*      final event = Event(
         title: titleController.text,
         startDateTime: fromDate,
         toDateTime: toDate,
         description: descriptionController.text,
         isAllDay: _isAllDay,
         priority: "Low",
-      );
+      );*/
+/*      EventProvider.addEvent(Event(
+          title: titleController.text,
+          startDateTime: fromDate,
+          toDateTime: toDate,
+          description: descriptionController.text,
+          priority: 'Low'));*/
 
-      final provider = Provider.of<EventProvider>(context, listen: false);
-      provider.addEvent(event);
+/*      final provider = Provider.of<EventProvider>(context, listen: false);
+      provider.addEvent(event);*/
 
-      Navigator.of(context).pop();
+/*      Navigator.of(context).pop();*/
     }
   }
 
@@ -118,10 +123,24 @@ class _AddTasksState extends State<AddTasks> {
     return Scaffold(
         appBar: AppBar(
           actions: [
-            ElevatedButton.icon(
-                onPressed: _saveForm,
+            Consumer<EventProvider>(
+                builder: (context, hiveService, widget) =>
+                ElevatedButton.icon(
+                onPressed: (){
+                  if(_formKey.currentState!.validate()){
+                    hiveService.addEvent(Event(
+                      title: titleController.text,
+                    description: descriptionController.text,
+                      startDateTime: fromDate,
+                      toDateTime: toDate,
+                      priority: "Low"
+                    ));
+                    Navigator.of(context).pop();
+                  }
+                },
                 icon: Icon(Icons.done),
                 label: Text("Save"))
+            )
           ],
         ),
         body: SingleChildScrollView(
