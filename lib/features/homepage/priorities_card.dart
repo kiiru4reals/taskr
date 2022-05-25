@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/config.dart';
+import 'package:soluprov/core/config.dart';
 import 'package:soluprov/provider/event_provider.dart';
 
 class ProgressCard extends StatefulWidget {
