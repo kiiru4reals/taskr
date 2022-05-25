@@ -49,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               MainTaskscard(),
-              ProgressCard(),
               Tasks(),
             ],
           ),
