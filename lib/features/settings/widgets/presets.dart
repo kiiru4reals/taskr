@@ -14,8 +14,9 @@ class _PresetsState extends State<Presets> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<SettingsProvider>(context);
-    provider.presetsTime;
-    provider.presetsPlace;
+    provider.getSettings();
+    bool presets_time = true;
+    bool presets_place = false;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,18 +27,18 @@ class _PresetsState extends State<Presets> {
           color: Colors.grey),),
         ),
         ListTileSwitch(
-          value: provider.presetsTime,
+          value: presets_time,
           onChanged: (value) { setState(() {
-            provider.presetsTime = value;
+            value = presets_time;
         }); },
           switchActiveColor: Colors.indigo,
           title: Text("Time"),
           visualDensity: VisualDensity.comfortable,
         ),
         ListTileSwitch(
-          value: provider.presetsPlace,
+          value: presets_place,
           onChanged: (value) { setState(() {
-            provider.presetsPlace = value;
+            value = presets_place;
           }); },
           switchActiveColor: Colors.indigo,
           title: Text("Place"),

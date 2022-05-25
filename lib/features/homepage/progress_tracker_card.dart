@@ -1,7 +1,7 @@
 import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/config.dart';
+import 'package:soluprov/core/config.dart';
 import 'package:soluprov/provider/event_provider.dart';
 
 class MainTaskscard extends StatefulWidget {
@@ -44,33 +44,6 @@ class _MainTaskscardState extends State<MainTaskscard> {
                     ],
                   ),
                 ],
-              ),
-              SizedBox(width: 15,),
-              SizedBox(
-                width: 85,
-                child: eventsProvider.events.length == 0 ? CircleProgressBar(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.black12,
-                  value: 0,
-                  child:  Center(
-                    child: AnimatedCount(
-                      unit: '%',
-                      count: 0, style: TextStyle(color: Colors.white),
-                      duration: Duration(milliseconds: 500),
-                    ),
-                  ),
-                ) : CircleProgressBar(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.black12,
-                  value: .65,
-                  child:  Center(
-                    child: AnimatedCount(
-                      unit: '%',
-                      count: 65, style: TextStyle(color: Colors.white),
-                      duration: Duration(milliseconds: 500),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
