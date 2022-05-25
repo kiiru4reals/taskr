@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/core/config.dart';
-import 'package:soluprov/provider/event_provider.dart';
+import 'package:soluprov/features/events/services/event_provider.dart';
 
 class ProgressCard extends StatefulWidget {
   const ProgressCard({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/features/events/widget/day_agenda.dart';
 import 'package:soluprov/models/event_data_source.dart';
-import 'package:soluprov/provider/event_provider.dart';
+import 'package:soluprov/features/events/services/event_provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CalendarWidget extends StatefulWidget {

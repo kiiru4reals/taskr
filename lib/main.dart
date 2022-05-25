@@ -7,8 +7,8 @@ import 'package:soluprov/features/homepage/home_screen.dart';
 import 'package:soluprov/features/splashscreen/splash_screen.dart';
 import 'package:soluprov/models/event_model.dart';
 import 'package:soluprov/models/settings_model.dart';
-import 'package:soluprov/provider/event_provider.dart';
-import 'package:soluprov/provider/settings/settings_provider.dart';
+import 'package:soluprov/features/events/services/event_provider.dart';
+import 'package:soluprov/features/settings/services/settings_provider.dart';
 
 late Box events;
 late Box settings;

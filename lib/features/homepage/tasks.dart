@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:soluprov/core/config.dart';
 import 'package:soluprov/features/events/routes/event_details.dart';
 import 'package:soluprov/models/event_model.dart';
-import 'package:soluprov/provider/event_provider.dart';
+import 'package:soluprov/features/events/services/event_provider.dart';
 
 class Tasks extends StatefulWidget {
   const Tasks({Key? key}) : super(key: key);

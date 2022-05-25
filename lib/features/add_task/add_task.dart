@@ -4,7 +4,7 @@ import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/core/date_utils.dart';
 import 'package:soluprov/models/event_model.dart';
-import 'package:soluprov/provider/event_provider.dart';
+import 'package:soluprov/features/events/services/event_provider.dart';
 
 class AddTasks extends StatefulWidget {
   final Event? event;
