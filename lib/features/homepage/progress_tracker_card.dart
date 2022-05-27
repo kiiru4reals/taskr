@@ -33,14 +33,14 @@ class _MainTaskscardState extends State<MainTaskscard> {
                 children: [
                   Column(
                     children: [
-                      Text("Track your productivity", style: Config.titleTextStyle
+                      Text("Track your productivity", style: Theme.of(context).textTheme.headlineLarge,
                       ),
                     ],
                   ),
                   Column(
                     children: [
                       Text('You have ${eventsProvider.events.length} tasks to do.' ,
-                        style: Config.smallTextStyle),
+                        style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                 ],

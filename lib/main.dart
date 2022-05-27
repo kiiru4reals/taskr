@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: Config.appName,
+        title: "Taskr",
         theme: Config.theme,
         home: SplashScreen(),
       ),

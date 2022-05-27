@@ -23,8 +23,8 @@ class VersionInfo extends StatelessWidget {
               onTap: (){},
               child: ListTile(
                 onTap: (){},
-                title: Text(Config.appName),
-                subtitle: Text(Config.appVersion, style: TextStyle(color: Colors.purple) ,),
+                title: Text("Takr"),
+                subtitle: Text("1.0", style: TextStyle(color: Colors.purple) ,),
               ),
             ),
           ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/core/config.dart';
-import 'package:soluprov/features/events/routes/event_details.dart';
 import 'package:soluprov/models/event_model.dart';
 import 'package:soluprov/features/events/services/event_provider.dart';
 
@@ -19,7 +18,7 @@ class _TasksState extends State<Tasks> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text("Tasks", style: Config.listTileTitleStyling),
+        child: Text("Tasks", style: Theme.of(context).textTheme.titleMedium),
       ),
       eventsProvider.events.length == 0
           ? Center(
@@ -59,7 +58,7 @@ class _TasksState extends State<Tasks> {
                         ),),
                         subtitle: Text(
                           "",
-                          style: Config.listTileSubtitleStyling,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
                     ),
