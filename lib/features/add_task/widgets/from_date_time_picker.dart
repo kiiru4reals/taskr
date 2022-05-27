@@ -12,7 +12,6 @@ class FromDateTimePicker extends StatefulWidget {
 class _FromDateTimePickerState extends State<FromDateTimePicker> {
   late DateTime fromDate;
   late DateTime toDate;
-  @override
   Future pickFromDateTime({required bool pickDate}) async {
     final date = await pickDateTime(fromDate,
         pickDate: pickDate, firstDate: pickDate ? fromDate : null);
