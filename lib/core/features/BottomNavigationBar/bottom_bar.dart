@@ -4,6 +4,8 @@ import 'package:soluprov/features/settings/settings.dart';
 import 'package:soluprov/features/tasks/collective_events.dart';
 
 class BottomBarScreen extends StatefulWidget {
+  const BottomBarScreen({Key? key}) : super(key: key);
+
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }
@@ -17,9 +19,9 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   @override
   void initState() {
     _pages = [
-      HomeScreen(),
-      CollectiveEvents(),
-      Settings()
+      const HomeScreen(),
+      const CollectiveEvents(),
+      const Settings()
     ];
     super.initState();
   }
@@ -42,10 +44,10 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         notchMargin: 3,
         clipBehavior: Clip.antiAlias,
         // elevation: 5,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: Container(
           // height: kBottomNavigationBarHeight * 0.8,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               border: Border(
                 top: BorderSide(width: 0.5),
               )),
@@ -55,8 +57,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
             unselectedItemColor: Theme.of(context).unselectedWidgetColor,
             selectedItemColor: Colors.purple,
             currentIndex: _selectedIndex,
-            selectedLabelStyle: TextStyle(fontSize: 15),
-            items: [
+            selectedLabelStyle: const TextStyle(fontSize: 15),
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 tooltip: 'Home',
