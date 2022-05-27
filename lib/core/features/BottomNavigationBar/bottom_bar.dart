@@ -5,7 +5,6 @@ import 'package:soluprov/features/saved_links/saved_links.dart';
 import 'package:soluprov/features/settings/settings.dart';
 
 class BottomBarScreen extends StatefulWidget {
-  static const routeName = '/BottomBarScreen';
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }
