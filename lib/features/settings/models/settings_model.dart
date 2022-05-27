@@ -5,20 +5,20 @@ part 'settings_model.g.dart';
 @HiveType(typeId: 1)
 class SettingsModel extends HiveObject {
   @HiveField(0)
-  bool presets_time;
+  bool presetsTime;
   @HiveField(1)
-  bool presets_place;
+  bool presetsPlace;
   @HiveField(2)
-  String alert_style;
+  String alertStyle;
   @HiveField(3)
-  bool show_reminder_on_app_screen;
+  bool showReminderOnAppScreen;
   @HiveField(4)
   bool notifications;
 
   SettingsModel(
-      {this.presets_time = false,
-      this.presets_place = false,
-      this.alert_style = "Medium",
-      this.show_reminder_on_app_screen = true,
+      {this.presetsTime = false,
+      this.presetsPlace = false,
+      this.alertStyle = "Medium",
+      this.showReminderOnAppScreen = true,
       this.notifications = true});
 }
