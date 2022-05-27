@@ -24,28 +24,19 @@ class _AddTasksState extends State<AddTasks> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
-  // For priority
-  List? _priorities;
-  int _selectedIndex = 0;
 
   @override
   void initState() {
     // We fill the values for priority
-    _priorities = ["Low", "Medium", "High"];
 
     super.initState();
 
     if (widget.event == null) {
       fromDate = DateTime.now();
-      toDate = DateTime.now().add(Duration(hours: 2));
+      toDate = DateTime.now().add(const Duration(hours: 2));
     }
   }
 
-  void _selectedPriority(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   void dispose() {
@@ -57,8 +48,8 @@ class _AddTasksState extends State<AddTasks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
+        appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(100),
             child: AddTasksAppBar()),
         body: SingleChildScrollView(
           child: Padding(
@@ -68,16 +59,16 @@ class _AddTasksState extends State<AddTasks> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TitleFormField(),
-                  SizedBox(
+                  const TitleFormField(),
+                  const SizedBox(
                     height: 5,
                   ),
-                  DescriptionFormField(),
+                  const DescriptionFormField(),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           "From",
                           style: TextStyle(
@@ -86,14 +77,14 @@ class _AddTasksState extends State<AddTasks> {
                               color: Colors.grey),
                         ),
                       ),
-                      FromDateTimePicker(),
+                      const FromDateTimePicker(),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           "To",
                           style: TextStyle(
@@ -102,7 +93,7 @@ class _AddTasksState extends State<AddTasks> {
                               color: Colors.grey),
                         ),
                       ),
-                      ToDateTimePicker(),
+                      const ToDateTimePicker(),
                     ],
                   ),
                   Column(
@@ -115,7 +106,7 @@ class _AddTasksState extends State<AddTasks> {
                           });
                         },
                         switchActiveColor: Colors.indigo,
-                        title: Text("All day event?"),
+                        title: const Text("All day event?"),
                         visualDensity: VisualDensity.comfortable,
                       ),
                     ],
@@ -140,7 +131,7 @@ class DateDropDownField extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(text),
-      trailing: Icon(Icons.arrow_drop_down_outlined),
+      trailing: const Icon(Icons.arrow_drop_down_outlined),
       onTap: onClicked,
     );
   }
@@ -158,7 +149,7 @@ class TimeDropDownField extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(text),
-      trailing: Icon(Icons.arrow_drop_down_outlined),
+      trailing: const Icon(Icons.arrow_drop_down_outlined),
       onTap: onClicked,
     );
   }
