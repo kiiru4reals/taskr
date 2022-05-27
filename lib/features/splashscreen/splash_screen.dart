@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/features/BottomNavigationBar/bottom_bar.dart';
+import 'package:soluprov/core/features/BottomNavigationBar/bottom_bar.dart';
 import 'package:soluprov/features/events/services/event_provider.dart';
 import 'package:soluprov/features/settings/services/settings_provider.dart';
 
