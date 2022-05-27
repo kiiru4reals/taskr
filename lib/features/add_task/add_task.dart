@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
-import 'package:provider/provider.dart';
-import 'package:soluprov/core/date_utils.dart';
 import 'package:soluprov/features/add_task/widgets/add_tasks_app_bar.dart';
 import 'package:soluprov/features/add_task/widgets/description_form_field.dart';
 import 'package:soluprov/features/add_task/widgets/from_date_time_picker.dart';
@@ -53,46 +51,6 @@ class _AddTasksState extends State<AddTasks> {
   void dispose() {
     titleController.dispose();
     super.dispose();
-  }
-
-  Future pickFromDateTime({required bool pickDate}) async {
-    final date = await pickDateTime(fromDate,
-        pickDate: pickDate, firstDate: pickDate ? fromDate : null);
-    if (date == null) return;
-    setState(() => fromDate = date);
-
-    if (date.isAfter(toDate)) {
-      toDate =
-          DateTime(date.year, date.month, date.day, toDate.hour, toDate.minute);
-    }
-  }
-
-  Future<DateTime?> pickDateTime(
-    DateTime initialDate, {
-    required bool pickDate,
-    DateTime? firstDate,
-  }) async {
-    if (pickDate) {
-      final date = await showDatePicker(
-          context: context,
-          initialDate: initialDate,
-          firstDate: firstDate ?? DateTime(2015, 8),
-          lastDate: DateTime(2100));
-      if (date == null) return null;
-
-      final time =
-          Duration(hours: initialDate.hour, minutes: initialDate.minute);
-
-      return date.add(time);
-    } else {
-      final timeOfDay = await showTimePicker(
-          context: context, initialTime: TimeOfDay.fromDateTime(initialDate));
-      if (timeOfDay == null) return null;
-      final date =
-          DateTime(initialDate.year, initialDate.month, initialDate.day);
-      final time = Duration(hours: timeOfDay.hour, minutes: timeOfDay.minute);
-      return date.add(time);
-    }
   }
 
 
