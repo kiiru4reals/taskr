@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/core/styles.dart';
 import 'package:soluprov/features/tasks/services/event_provider.dart';
-import 'package:soluprov/models/event_model.dart';
+import 'package:soluprov/features/tasks/models/event_model.dart';
 
 class Tasks extends StatefulWidget {
   const Tasks({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:soluprov/models/event_model.dart';
+import 'package:soluprov/features/tasks/models/event_model.dart';
 
 class EventProvider extends ChangeNotifier {
   List<Event> _events = [];

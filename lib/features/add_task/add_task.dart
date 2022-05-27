@@ -5,7 +5,7 @@ import 'package:soluprov/features/add_task/widgets/description_form_field.dart';
 import 'package:soluprov/features/add_task/widgets/from_date_time_picker.dart';
 import 'package:soluprov/features/add_task/widgets/title_form_field.dart';
 import 'package:soluprov/features/add_task/widgets/to_date_time_picker.dart';
-import 'package:soluprov/models/event_model.dart';
+import 'package:soluprov/features/tasks/models/event_model.dart';
 
 class AddTasks extends StatefulWidget {
   final Event? event;

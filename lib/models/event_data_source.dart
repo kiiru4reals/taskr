@@ -1,4 +1,4 @@
-import 'package:soluprov/models/event_model.dart';
+import 'package:soluprov/features/tasks/models/event_model.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class EventDataSource extends CalendarDataSource{

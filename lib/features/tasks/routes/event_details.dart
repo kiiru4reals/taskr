@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:soluprov/main.dart';
-import 'package:soluprov/models/event_model.dart';
+import 'package:soluprov/features/tasks/models/event_model.dart';
 
 class EventDetailsScreen extends StatefulWidget {
   final Event event;
