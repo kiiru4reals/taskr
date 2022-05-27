@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "Taskr",
         theme: Styles.theme,
-        home: SplashScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

@@ -24,7 +24,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       onLongPress: (details){
         final provider = Provider.of<TaskProvider>(context, listen: false);
         provider.setDate(details.date!);
-        showModalBottomSheet(context: context, builder: (context) => DayAgenda());
+        showModalBottomSheet(context: context, builder: (context) => const DayAgenda());
       },
 
 

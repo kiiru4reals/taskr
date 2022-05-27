@@ -13,14 +13,14 @@ class _CollectiveEventsState extends State<CollectiveEvents> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your events",),
+        title: const Text("Your events",),
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
-      body: CalendarWidget(),
+      body: const CalendarWidget(),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddTasks())),
+        child: const Icon(Icons.add),
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddTasks())),
       ),
 
     );

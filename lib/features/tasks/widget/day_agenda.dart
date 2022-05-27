@@ -19,7 +19,7 @@ class _DayAgendaState extends State<DayAgenda> {
     final selectedEvents = provider.taskHiveBox;
 
     if (selectedEvents.isEmpty) {
-      return Center(
+      return const Center(
         child: Text(
           "Your day is as formless just like your face",
           style: TextStyle(
@@ -32,7 +32,7 @@ class _DayAgendaState extends State<DayAgenda> {
     }
     return SfCalendarTheme(
       data: SfCalendarThemeData(
-        timeTextStyle: TextStyle(fontSize: 14,color: Colors.black)
+        timeTextStyle: const TextStyle(fontSize: 14,color: Colors.black)
       ),
       child: SfCalendar(
         view: CalendarView.timelineDay,
@@ -68,7 +68,7 @@ class _DayAgendaState extends State<DayAgenda> {
         child: Text(
           event.title, maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 16,
