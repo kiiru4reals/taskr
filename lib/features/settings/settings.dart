@@ -27,7 +27,7 @@ class _SettingsState extends State<Settings> {
                 child: Image.network("https://images.unsplash.com/photo-1517842645767-c639042777db?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true",
                 fit: BoxFit.cover,),
               ),
-              title: Text("Settings", style: TextStyle(
+              title: const Text("Settings", style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w300,
                 color: Colors.black,
@@ -36,7 +36,7 @@ class _SettingsState extends State<Settings> {
           ),
           SliverToBoxAdapter(
             child: Column(
-              children: [
+              children: const [
                 Presets(),
                 GeneralSettings(),
                 SharedReminders(),

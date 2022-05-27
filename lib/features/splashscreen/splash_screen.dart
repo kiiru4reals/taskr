@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,31 +15,18 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   double value = 0;
 
-  void downloadData() async{
-    new Timer.periodic(
-        Duration(seconds: 1),
-            (Timer timer){
-          setState(() {
-            if(value == 1) {
-              timer.cancel();
-            }
-            else {
-              value = value + 0.1;
-            }
-          });
-        }
-    );
-  }
+
   @override
   Widget build(BuildContext context) {
     final eventsProvider = Provider.of<TaskProvider>(context);
     final settingsProvider = Provider.of<SettingsProvider>(context);
     eventsProvider.getTasks();
+    settingsProvider.getSettings();
     return Scaffold(
         body: EasySplashScreen(
           logo: Image.network(
               'https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/flutter-512.png'),
-          title: Text(
+          title: const Text(
             "Taskr- the app",
             style: TextStyle(
               fontSize: 18,
@@ -50,8 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           backgroundColor: Colors.grey.shade400,
           showLoader: true,
-          loadingText: Text("Setting up"),
-          navigator: BottomBarScreen(),
+          loadingText: const Text("Setting up"),
+          navigator: const BottomBarScreen(),
           durationInSeconds: 20,
         ),
     );
