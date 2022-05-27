@@ -34,11 +34,11 @@ class _TasksState extends State<Tasks> {
               itemCount: eventsProvider.events.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                Event event = eventsProvider.events[index];
+                Task task = eventsProvider.events[index];
                 return Dismissible(
-                  key: ObjectKey(event),
+                  key: ObjectKey(task),
                   direction: DismissDirection.endToStart,
-                  onDismissed: (direction) => eventsProvider.deleteTask(event),
+                  onDismissed: (direction) => eventsProvider.deleteTask(task),
                   background: Container(
                     alignment: Alignment.centerLeft,
                     color: Colors.red,
@@ -52,7 +52,7 @@ class _TasksState extends State<Tasks> {
                         onTap:
                             () {} /*=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsScreen(event: event,)))*/,
                         title: Text(
-                          event.title,
+                          task.title,
                         style: TextStyle(
                           fontSize: 18,
                         ),),

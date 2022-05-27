@@ -9,9 +9,9 @@ import 'package:soluprov/features/tasks/models/event_model.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
 
 class AddTasks extends StatefulWidget {
-  final Event? event;
+  final Task? task;
 
-  const AddTasks({Key? key, this.event}) : super(key: key);
+  const AddTasks({Key? key, this.task}) : super(key: key);
 
   @override
   _AddTasksState createState() => _AddTasksState();
@@ -31,7 +31,7 @@ class _AddTasksState extends State<AddTasks> {
 
     super.initState();
 
-    if (widget.event == null) {
+    if (widget.task == null) {
       fromDate = DateTime.now();
       toDate = DateTime.now().add(const Duration(hours: 2));
     }
@@ -51,7 +51,7 @@ class _AddTasksState extends State<AddTasks> {
               builder: (context, hiveService, widget) => ElevatedButton.icon(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      hiveService.deleteTask(Event(
+                      hiveService.deleteTask(Task(
                           title: titleController.text,
                           description: descriptionController.text,
                           startDateTime: fromDate,

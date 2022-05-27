@@ -12,7 +12,7 @@ import 'package:soluprov/features/settings/services/settings_provider.dart';
  Future main() async{
    WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(EventAdapter());
+  // Hive.registerAdapter(EventAdapter());
   Hive.registerAdapter(SettingsModelAdapter());
   // info = await Hive.openBox('info');
   runApp(const MyApp());
