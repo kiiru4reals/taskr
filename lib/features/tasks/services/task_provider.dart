@@ -1,7 +1,7 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:soluprov/features/tasks/models/event_model.dart';
+import 'package:soluprov/features/tasks/models/task_model.dart';
 
 class TaskProvider extends ChangeNotifier {
   List<Task> _tasks = [];

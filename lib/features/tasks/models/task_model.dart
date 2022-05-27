@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
-part 'event_model.g.dart';
+part 'task_model.g.dart';
 
 @HiveType(typeId: 0)
 class Task extends HiveObject {
