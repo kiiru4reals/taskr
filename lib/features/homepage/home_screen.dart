@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         body: CustomScrollView(
       slivers: [
-        SliverAppBar(
+        const SliverAppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           backgroundColor: Colors.white,
           expandedHeight: 80,
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
+            children: const [
               MainTaskscard(),
               Tasks(),
             ],

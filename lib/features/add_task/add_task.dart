@@ -60,8 +60,8 @@ class _AddTasksState extends State<AddTasks> {
                       Navigator.of(context).pop();
                     }
                   },
-                  icon: Icon(Icons.done),
-                  label: Text("Save")))
+                  icon: const Icon(Icons.done),
+                  label: const Text("Save")))
         ]),
         body: SingleChildScrollView(
           child: Padding(
@@ -78,8 +78,8 @@ class _AddTasksState extends State<AddTasks> {
                   const DescriptionFormField(),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
+                    children: const [
+                      Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
                           "From",
@@ -89,13 +89,13 @@ class _AddTasksState extends State<AddTasks> {
                               color: Colors.grey),
                         ),
                       ),
-                      const FromDateTimePicker(),
+                      FromDateTimePicker(),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
+                    children: const [
+                      Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
                           "To",
@@ -105,7 +105,7 @@ class _AddTasksState extends State<AddTasks> {
                               color: Colors.grey),
                         ),
                       ),
-                      const ToDateTimePicker(),
+                      ToDateTimePicker(),
                     ],
                   ),
                   Column(

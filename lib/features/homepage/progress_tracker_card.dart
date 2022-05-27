@@ -24,7 +24,7 @@ class _MainTaskscardState extends State<MainTaskscard> {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Row(
             children: [
               Column(

@@ -16,7 +16,7 @@ class _TitleFormFieldState extends State<TitleFormField> {
       validator: (title) => title != null && title.isEmpty
           ? "Event must have a name"
           : null,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         border: UnderlineInputBorder(),
         hintText: "Laundry",
         label: Text("Task name"),
