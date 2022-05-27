@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Config {
+class Styles {
 
   static final ThemeData theme = ThemeData(
       fontFamily: 'Montserrat',
