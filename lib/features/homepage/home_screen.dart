@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soluprov/features/homepage/progress_tracker_card.dart';
-import 'package:soluprov/features/homepage/priorities_card.dart';
 import 'package:soluprov/features/homepage/tasks.dart';
 
 class HomeScreen extends StatefulWidget {
