@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:soluprov/main.dart';
-import 'package:soluprov/models/settings_model.dart';
+import 'package:soluprov/features/settings/models/settings_model.dart';
 
 class SettingsProvider extends ChangeNotifier {
 
