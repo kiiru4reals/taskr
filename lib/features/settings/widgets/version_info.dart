@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soluprov/core/config.dart';
+import 'package:soluprov/core/styles.dart';
 
 class VersionInfo extends StatelessWidget {
   const VersionInfo({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class VersionInfo extends StatelessWidget {
               onTap: (){},
               child: ListTile(
                 onTap: (){},
-                title: Text("Takr"),
+                title: Text("Taskr"),
                 subtitle: Text("1.0", style: TextStyle(color: Colors.purple) ,),
               ),
             ),

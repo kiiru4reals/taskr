@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/core/config.dart';
+import 'package:soluprov/core/styles.dart';
 import 'package:soluprov/models/event_model.dart';
 import 'package:soluprov/features/events/services/event_provider.dart';
 

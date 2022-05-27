@@ -1,7 +1,6 @@
-import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/core/config.dart';
+import 'package:soluprov/core/styles.dart';
 import 'package:soluprov/features/events/services/event_provider.dart';
 
 class MainTaskscard extends StatefulWidget {
