@@ -51,7 +51,7 @@ class _AddTasksState extends State<AddTasks> {
               builder: (context, hiveService, widget) => ElevatedButton.icon(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      hiveService.addEvent(Event(
+                      hiveService.deleteTask(Event(
                           title: titleController.text,
                           description: descriptionController.text,
                           startDateTime: fromDate,

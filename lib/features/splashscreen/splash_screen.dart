@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final eventsProvider = Provider.of<TaskProvider>(context);
     final settingsProvider = Provider.of<SettingsProvider>(context);
-    eventsProvider.getEvents();
+    eventsProvider.getTasks();
     return Scaffold(
         body: EasySplashScreen(
           logo: Image.network(

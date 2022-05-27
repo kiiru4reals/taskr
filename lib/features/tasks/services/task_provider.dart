@@ -18,7 +18,7 @@ class TaskProvider extends ChangeNotifier {
 
   // List<Event> get eventOfSelectedDate => _events;
   // Add events
-  Future <void> addEvent(Event event) async {
+  Future <void> addTask(Event event) async {
     Box<Event> box = await Hive.openBox<Event>(taskHiveBox);
     await box.add(event);
     _tasks.add(event);
@@ -27,14 +27,14 @@ class TaskProvider extends ChangeNotifier {
   }
 
   // Retrieve events
-  Future<void> getEvents() async {
+  Future<void> getTasks() async {
     Box<Event> box = await Hive.openBox<Event>(taskHiveBox);
     _tasks = box.values.toList();
     notifyListeners();
   }
 
 // Delete events
-  Future<void> deleteEvents(Event event) async {
+  Future<void> deleteTask(Event event) async {
     Box<Event> box = await Hive.openBox<Event>(taskHiveBox);
     await box.delete(event.key);
     _tasks = box.values.toList();

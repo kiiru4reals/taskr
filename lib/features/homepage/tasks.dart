@@ -38,7 +38,7 @@ class _TasksState extends State<Tasks> {
                 return Dismissible(
                   key: ObjectKey(event),
                   direction: DismissDirection.endToStart,
-                  onDismissed: (direction) => eventsProvider.deleteEvents(event),
+                  onDismissed: (direction) => eventsProvider.deleteTask(event),
                   background: Container(
                     alignment: Alignment.centerLeft,
                     color: Colors.red,
