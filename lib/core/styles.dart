@@ -7,15 +7,15 @@ class Styles {
       unselectedWidgetColor: Colors.grey,
       primarySwatch: Colors.deepPurple,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         // Formally title textstyle
-        headlineLarge: const TextStyle(
+        headlineLarge: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: Colors.white,
         ),
         // Moved from listTileTitleStyling
-        titleMedium: const TextStyle(
+        titleMedium: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w500,
           color: Colors.black,
@@ -26,9 +26,6 @@ class Styles {
           color: Colors.white,
         ),
       ));
-
-
-  static final int kmyPadding = 20;
 
 
 }
