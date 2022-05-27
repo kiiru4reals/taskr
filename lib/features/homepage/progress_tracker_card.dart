@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
 
-class MainTaskscard extends StatefulWidget {
-  const MainTaskscard({Key? key}) : super(key: key);
+class MainTasksCard extends StatefulWidget {
+  const MainTasksCard({Key? key}) : super(key: key);
 
   @override
-  _MainTaskscardState createState() => _MainTaskscardState();
+  _MainTasksCardState createState() => _MainTasksCardState();
 }
 
-class _MainTaskscardState extends State<MainTaskscard> {
+class _MainTasksCardState extends State<MainTasksCard> {
   @override
   Widget build(BuildContext context) {
     final eventsProvider = Provider.of<TaskProvider>(context);
