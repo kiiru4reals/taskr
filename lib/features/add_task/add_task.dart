@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
-import 'package:soluprov/features/add_task/widgets/add_tasks_app_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:soluprov/features/add_task/widgets/description_form_field.dart';
 import 'package:soluprov/features/add_task/widgets/from_date_time_picker.dart';
 import 'package:soluprov/features/add_task/widgets/title_form_field.dart';
 import 'package:soluprov/features/add_task/widgets/to_date_time_picker.dart';
 import 'package:soluprov/features/tasks/models/event_model.dart';
+import 'package:soluprov/features/tasks/services/task_provider.dart';
 
 class AddTasks extends StatefulWidget {
   final Event? event;
@@ -24,7 +25,6 @@ class _AddTasksState extends State<AddTasks> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
-
   @override
   void initState() {
     // We fill the values for priority
@@ -37,20 +37,32 @@ class _AddTasksState extends State<AddTasks> {
     }
   }
 
-
   @override
   void dispose() {
     titleController.dispose();
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const PreferredSize(
-            preferredSize: Size.fromHeight(100),
-            child: AddTasksAppBar()),
+        appBar: AppBar(actions: [
+          Consumer<TaskProvider>(
+              builder: (context, hiveService, widget) => ElevatedButton.icon(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      hiveService.addEvent(Event(
+                          title: titleController.text,
+                          description: descriptionController.text,
+                          startDateTime: fromDate,
+                          toDateTime: toDate,
+                          priority: "Low"));
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  icon: Icon(Icons.done),
+                  label: Text("Save")))
+        ]),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(12.0),

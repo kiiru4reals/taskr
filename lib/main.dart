@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             SettingsProvider(),
         ),
         ChangeNotifierProvider(create: (_) =>
-            EventProvider(),
+            TaskProvider(),
         ),
       ],
       child: MaterialApp(

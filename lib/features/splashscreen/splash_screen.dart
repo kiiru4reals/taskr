@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    final eventsProvider = Provider.of<EventProvider>(context);
+    final eventsProvider = Provider.of<TaskProvider>(context);
     final settingsProvider = Provider.of<SettingsProvider>(context);
     eventsProvider.getEvents();
     return Scaffold(

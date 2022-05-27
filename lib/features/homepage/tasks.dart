@@ -14,7 +14,7 @@ class Tasks extends StatefulWidget {
 class _TasksState extends State<Tasks> {
   @override
   Widget build(BuildContext context) {
-    final eventsProvider = Provider.of<EventProvider>(context);
+    final eventsProvider = Provider.of<TaskProvider>(context);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.all(8.0),

@@ -15,14 +15,14 @@ class CalendarWidget extends StatefulWidget {
 class _CalendarWidgetState extends State<CalendarWidget> {
   @override
   Widget build(BuildContext context) {
-    final events = Provider.of<EventProvider>(context).events;
+    final events = Provider.of<TaskProvider>(context).events;
     return SfCalendar(
       dataSource: EventDataSource(events),
       view: CalendarView.month,
       initialSelectedDate: DateTime.now(),
       cellBorderColor: Colors.transparent,
       onLongPress: (details){
-        final provider = Provider.of<EventProvider>(context, listen: false);
+        final provider = Provider.of<TaskProvider>(context, listen: false);
         provider.setDate(details.date!);
         showModalBottomSheet(context: context, builder: (context) => DayAgenda());
       },

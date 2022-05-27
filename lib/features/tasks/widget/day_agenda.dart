@@ -15,8 +15,8 @@ class DayAgenda extends StatefulWidget {
 class _DayAgendaState extends State<DayAgenda> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<EventProvider>(context);
-    final selectedEvents = provider.eventHiveBox;
+    final provider = Provider.of<TaskProvider>(context);
+    final selectedEvents = provider.taskHiveBox;
 
     if (selectedEvents.isEmpty) {
       return Center(

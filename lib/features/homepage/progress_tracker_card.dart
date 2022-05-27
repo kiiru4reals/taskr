@@ -13,7 +13,7 @@ class MainTaskscard extends StatefulWidget {
 class _MainTaskscardState extends State<MainTaskscard> {
   @override
   Widget build(BuildContext context) {
-    final eventsProvider = Provider.of<EventProvider>(context);
+    final eventsProvider = Provider.of<TaskProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Card(
