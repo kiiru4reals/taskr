@@ -8,13 +8,12 @@ import 'package:soluprov/features/tasks/services/task_provider.dart';
 import 'package:soluprov/features/tasks/models/task_model.dart';
 import 'package:soluprov/features/settings/models/settings_model.dart';
 import 'package:soluprov/features/settings/services/settings_provider.dart';
+import 'package:soluprov/init.dart';
 
 
  Future main() async{
    WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  Hive.registerAdapter(TaskAdapter());
-  Hive.registerAdapter(SettingsModelAdapter());
+   initHive();
   // info = await Hive.openBox('info');
   runApp(const MyApp());
 }
