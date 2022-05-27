@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../tasks/services/event_provider.dart';
+import '../../tasks/services/task_provider.dart';
 
 class AddTasksAppBar extends StatefulWidget {
   const AddTasksAppBar({Key? key}) : super(key: key);

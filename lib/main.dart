@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/core/styles.dart';
 import 'package:soluprov/features/splashscreen/splash_screen.dart';
-import 'package:soluprov/features/tasks/services/event_provider.dart';
+import 'package:soluprov/features/tasks/services/task_provider.dart';
 import 'package:soluprov/features/tasks/models/event_model.dart';
 import 'package:soluprov/models/settings_model.dart';
 import 'package:soluprov/features/settings/services/settings_provider.dart';

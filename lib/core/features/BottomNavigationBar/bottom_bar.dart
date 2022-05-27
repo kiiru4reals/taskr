@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:soluprov/features/homepage/home_screen.dart';
-import 'package:soluprov/features/saved_links/saved_links.dart';
 import 'package:soluprov/features/settings/settings.dart';
 import 'package:soluprov/features/tasks/collective_events.dart';
 
@@ -19,17 +18,9 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   void initState() {
     _pages = [
       HomeScreen(),
-      // SavedLinks(),
       CollectiveEvents(),
       Settings()
     ];
-    // _pages = [
-    //   {'page': HomeScreen(), 'title': 'Home Screen'},
-    //   {'page': FeedsScreen(), 'title': 'Feeds screen'},
-    //   {'page': SearchScreen(), 'title': 'Search Screen'},
-    //   {'page': CartScreen(), 'title': 'CartScreen'},
-    //   {'page': UserScreen(), 'title': 'UserScreen'}
-    // ];
     super.initState();
   }
 
