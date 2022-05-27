@@ -19,8 +19,8 @@ class _TasksState extends State<Tasks> {
         padding: const EdgeInsets.all(8.0),
         child: Text("Tasks", style: Theme.of(context).textTheme.titleMedium),
       ),
-      eventsProvider.events.length == 0
-          ? Center(
+      eventsProvider.events.isEmpty
+          ? const Center(
               child: Text(
                 "No tasks at the moment",
                 style: TextStyle(
@@ -41,7 +41,7 @@ class _TasksState extends State<Tasks> {
                   background: Container(
                     alignment: Alignment.centerLeft,
                     color: Colors.red,
-                    child: Icon(Icons.delete_forever, color: Colors.white, size: 20,),
+                    child: const Icon(Icons.delete_forever, color: Colors.white, size: 20,),
                   ),
                   child: Material(
                     color: Colors.transparent,
@@ -52,7 +52,7 @@ class _TasksState extends State<Tasks> {
                             () {} /*=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsScreen(event: event,)))*/,
                         title: Text(
                           task.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                         ),),
                         subtitle: Text(
