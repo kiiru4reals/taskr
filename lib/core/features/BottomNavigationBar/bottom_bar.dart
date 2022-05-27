@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:soluprov/features/events/collective_events.dart';
 import 'package:soluprov/features/homepage/home_screen.dart';
 import 'package:soluprov/features/saved_links/saved_links.dart';
 import 'package:soluprov/features/settings/settings.dart';
+import 'package:soluprov/features/tasks/collective_events.dart';
 
 class BottomBarScreen extends StatefulWidget {
   @override

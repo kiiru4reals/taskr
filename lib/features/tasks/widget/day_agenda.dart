@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/features/events/routes/event_details.dart';
+import 'package:soluprov/features/tasks/routes/event_details.dart';
+import 'package:soluprov/features/tasks/services/event_provider.dart';
 import 'package:soluprov/models/event_data_source.dart';
-import 'package:soluprov/features/events/services/event_provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
