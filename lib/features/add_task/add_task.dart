@@ -1,10 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/core/date_utils.dart';
+import 'package:soluprov/features/add_task/widgets/add_tasks_app_bar.dart';
+import 'package:soluprov/features/add_task/widgets/description_form_field.dart';
+import 'package:soluprov/features/add_task/widgets/from_date_time_picker.dart';
+import 'package:soluprov/features/add_task/widgets/title_form_field.dart';
+import 'package:soluprov/features/add_task/widgets/to_date_time_picker.dart';
 import 'package:soluprov/models/event_model.dart';
-import 'package:soluprov/features/events/services/event_provider.dart';
 
 class AddTasks extends StatefulWidget {
   final Event? event;
@@ -92,57 +95,13 @@ class _AddTasksState extends State<AddTasks> {
     }
   }
 
-  Future _saveForm() async {
-    final _isvalid = _formKey.currentState!.validate();
-
-    if (_isvalid) {
-/*      final event = Event(
-        title: titleController.text,
-        startDateTime: fromDate,
-        toDateTime: toDate,
-        description: descriptionController.text,
-        isAllDay: _isAllDay,
-        priority: "Low",
-      );*/
-/*      EventProvider.addEvent(Event(
-          title: titleController.text,
-          startDateTime: fromDate,
-          toDateTime: toDate,
-          description: descriptionController.text,
-          priority: 'Low'));*/
-
-/*      final provider = Provider.of<EventProvider>(context, listen: false);
-      provider.addEvent(event);*/
-
-/*      Navigator.of(context).pop();*/
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            Consumer<EventProvider>(
-                builder: (context, hiveService, widget) =>
-                ElevatedButton.icon(
-                onPressed: (){
-                  if(_formKey.currentState!.validate()){
-                    hiveService.addEvent(Event(
-                      title: titleController.text,
-                    description: descriptionController.text,
-                      startDateTime: fromDate,
-                      toDateTime: toDate,
-                      priority: "Low"
-                    ));
-                    Navigator.of(context).pop();
-                  }
-                },
-                icon: Icon(Icons.done),
-                label: Text("Save"))
-            )
-          ],
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(100),
+            child: AddTasksAppBar()),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -151,29 +110,11 @@ class _AddTasksState extends State<AddTasks> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextFormField(
-                    onFieldSubmitted: (_) => _saveForm(),
-                    controller: titleController,
-                    validator: (title) => title != null && title.isEmpty
-                        ? "Event must have a name"
-                        : null,
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                      hintText: "Laundry",
-                      label: Text("Task name"),
-                    ),
-                  ),
+                  TitleFormField(),
                   SizedBox(
                     height: 5,
                   ),
-                  TextFormField(
-                    controller: descriptionController,
-                    decoration: InputDecoration(
-                      label: Text("Task description"),
-                      border: UnderlineInputBorder(),
-                      hintText: "Enter description",
-                    ),
-                  ),
+                  DescriptionFormField(),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -187,22 +128,7 @@ class _AddTasksState extends State<AddTasks> {
                               color: Colors.grey),
                         ),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                              flex: 2,
-                              child: DateDropDownField(
-                                text: DateUtil.toDate(fromDate),
-                                onClicked: () =>
-                                    pickFromDateTime(pickDate: true),
-                              )),
-                          Expanded(
-                              child: DateDropDownField(
-                            text: DateUtil.toTime(fromDate),
-                            onClicked: () => pickFromDateTime(pickDate: false),
-                          )),
-                        ],
-                      ),
+                      FromDateTimePicker(),
                     ],
                   ),
                   Column(
@@ -218,86 +144,7 @@ class _AddTasksState extends State<AddTasks> {
                               color: Colors.grey),
                         ),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                              flex: 2,
-                              child: DateDropDownField(
-                                text: DateUtil.toDate(toDate),
-                                onClicked: () =>
-                                    pickFromDateTime(pickDate: true),
-                              )),
-                          Expanded(
-                              child: DateDropDownField(
-                            text: DateUtil.toTime(toDate),
-                            onClicked: () => pickFromDateTime(pickDate: false),
-                          )),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Priority",
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                        ),
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * .3,
-                              child: OutlinedButton(
-                                  onPressed: () {},
-                                  child: Text("Low"),
-                                  style: OutlinedButton.styleFrom(
-                                    side: BorderSide(
-                                      color: Colors.green,
-                                    ),
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(12)),
-                                    ),
-                                  )),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .3,
-                              child: OutlinedButton(
-                                  onPressed: () {},
-                                  child: Text("Medium"),
-                                  style: OutlinedButton.styleFrom(
-                                    side: BorderSide(
-                                      color: Colors.orangeAccent,
-                                    ),
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(12)),
-                                    ),
-                                  )),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .3,
-                              child: OutlinedButton(
-                                  onPressed: () {},
-                                  child: Text("High"),
-                                  style: OutlinedButton.styleFrom(
-                                    side: BorderSide(
-                                      color: Colors.red,
-                                    ),
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(12)),
-                                    ),
-                                  )),
-                            ),
-                          ]),
+                      ToDateTimePicker(),
                     ],
                   ),
                   Column(
