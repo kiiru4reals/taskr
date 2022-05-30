@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/core/styles.dart';
+import 'package:soluprov/features/add_task/services/configure_date_time_picker.dart';
 import 'package:soluprov/features/settings/services/settings_provider.dart';
 import 'package:soluprov/features/splashscreen/splash_screen.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
@@ -13,14 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) =>
-            SettingsProvider(),
-        ),
-        ChangeNotifierProvider(create: (_) =>
-            TaskProvider(),
-        ),
+        Provider<ConfigureDateTimePickerProvider>(create: (_) => ConfigureDateTimePickerProvider()),
+        Provider<SettingsProvider>(create: (_) => SettingsProvider()),
+        Provider<TaskProvider>(create: (_) => TaskProvider()),
       ],
-      child: RootApp(),
+      child: const RootApp(),
     );
   }
 }
