@@ -76,38 +76,9 @@ class _AddTasksState extends State<AddTasks> {
                     height: 5,
                   ),
                   const DescriptionFormField(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          "From",
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                        ),
-                      ),
-                      FromDateTimePicker(),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          "To",
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                        ),
-                      ),
-                      ToDateTimePicker(),
-                    ],
-                  ),
+                  const FromDateTimePicker(),
+                  const ToDateTimePicker(),
+
                   Column(
                     children: [
                       ListTileSwitch(
