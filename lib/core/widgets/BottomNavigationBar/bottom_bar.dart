@@ -12,8 +12,6 @@ class BottomBarScreen extends StatefulWidget {
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
   List? _pages ;
-
-  // var _pages;
   int _selectedIndex = 0;
 
   @override
@@ -35,10 +33,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(_pages[_selectedIndex]['title']),
-      // ),
       body: _pages![_selectedIndex],
       bottomNavigationBar: BottomAppBar(
         notchMargin: 3,
@@ -46,7 +40,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         // elevation: 5,
         shape: const CircularNotchedRectangle(),
         child: Container(
-          // height: kBottomNavigationBarHeight * 0.8,
           decoration: const BoxDecoration(
               border: Border(
                 top: BorderSide(width: 0.5),
@@ -64,11 +57,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 tooltip: 'Home',
                 label: 'Home',
               ),
-              /*BottomNavigationBarItem(
-                icon: Icon(Icons.link_outlined),
-                tooltip: 'Saved links',
-                label: 'Saved links',
-              ),*/
               BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_month_outlined),
                 tooltip: 'Tasks',

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/features/add_task/widgets/description_form_field.dart';
-import 'package:soluprov/features/add_task/widgets/from_date_time_picker.dart';
-import 'package:soluprov/features/add_task/widgets/title_form_field.dart';
-import 'package:soluprov/features/add_task/widgets/to_date_time_picker.dart';
+import 'package:soluprov/core/date_utils.dart';
 import 'package:soluprov/features/tasks/models/task_model.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
 
@@ -24,6 +21,45 @@ class _AddTasksState extends State<AddTasks> {
   final _formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+
+  Future pickFromDateTime({required bool pickDate}) async {
+    final date = await pickDateTime(fromDate,
+        pickDate: pickDate, firstDate: pickDate ? fromDate : null);
+    if (date == null) return;
+    fromDate = date;
+
+    if (date.isAfter(toDate)) {
+      toDate =
+          DateTime(date.year, date.month, date.day, toDate.hour, toDate.minute);
+    }
+  }
+
+  Future<DateTime?> pickDateTime(DateTime initialDate, {
+    required bool pickDate,
+    DateTime? firstDate,
+  }) async {
+    if (pickDate) {
+      final date = await showDatePicker(
+          context: context,
+          initialDate: initialDate,
+          firstDate: firstDate ?? DateTime(2015, 8),
+          lastDate: DateTime(2100));
+      if (date == null) return null;
+
+      final time =
+      Duration(hours: initialDate.hour, minutes: initialDate.minute);
+
+      return date.add(time);
+    } else {
+      final timeOfDay = await showTimePicker(
+          context: context, initialTime: TimeOfDay.fromDateTime(initialDate));
+      if (timeOfDay == null) return null;
+      final date =
+      DateTime(initialDate.year, initialDate.month, initialDate.day);
+      final time = Duration(hours: timeOfDay.hour, minutes: timeOfDay.minute);
+      return date.add(time);
+    }
+  }
 
   @override
   void initState() {
@@ -48,20 +84,21 @@ class _AddTasksState extends State<AddTasks> {
     return Scaffold(
         appBar: AppBar(actions: [
           Consumer<TaskProvider>(
-              builder: (context, hiveService, widget) => ElevatedButton.icon(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      hiveService.deleteTask(Task(
-                          title: titleController.text,
-                          description: descriptionController.text,
-                          startDateTime: fromDate,
-                          toDateTime: toDate,
-                          priority: "Low"));
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  icon: const Icon(Icons.done),
-                  label: const Text("Save")))
+              builder: (context, hiveService, widget) =>
+                  ElevatedButton.icon(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          hiveService.addTask(Task(
+                              title: titleController.text,
+                              description: descriptionController.text,
+                              startDateTime: fromDate,
+                              toDateTime: toDate,
+                              priority: "Low"));
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      icon: const Icon(Icons.done),
+                      label: const Text("Save")))
         ]),
         body: SingleChildScrollView(
           child: Padding(
@@ -71,14 +108,13 @@ class _AddTasksState extends State<AddTasks> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const TitleFormField(),
+                  titleFormField(),
                   const SizedBox(
                     height: 5,
                   ),
-                  const DescriptionFormField(),
-                  const FromDateTimePicker(),
-                  const ToDateTimePicker(),
-
+                  descriptionFormField(),
+                  fromDateTimePicker(),
+                  toDateTimePicker(),
                   Column(
                     children: [
                       ListTileSwitch(
@@ -100,7 +136,88 @@ class _AddTasksState extends State<AddTasks> {
           ),
         ));
   }
+  Widget titleFormField() => TextFormField(
+    controller: titleController,
+    validator: (title) => title != null && title.isEmpty
+        ? "Event must have a name"
+        : null,
+    decoration: const InputDecoration(
+      border: UnderlineInputBorder(),
+      hintText: "Laundry",
+      label: Text("Task name"),
+    ),
+  );
+  Widget descriptionFormField() => TextFormField(
+    controller: descriptionController,
+    decoration: const InputDecoration(
+      label: Text("Task description"),
+      border: UnderlineInputBorder(),
+      hintText: "Enter description",
+    ),
+  );
+  Widget fromDateTimePicker() => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          "From",
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey),
+        ),
+      ),
+      Row(
+        children: [
+          Expanded(
+              flex: 2,
+              child: DateDropDownField(
+                text: DateUtil.toDate(fromDate),
+                onClicked: () => pickFromDateTime(pickDate: true),
+              )),
+          Expanded(
+              child: DateDropDownField(
+                text: DateUtil.toTime(fromDate),
+                onClicked: () => pickFromDateTime(pickDate: false),
+              )),
+        ],
+      ),
+    ],
+  );
+  Widget toDateTimePicker() => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          "To",
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey),
+        ),
+      ),
+      Row(
+        children: [
+          Expanded(
+              flex: 2,
+              child: DateDropDownField(
+                text: DateUtil.toDate(toDate),
+                onClicked: () =>
+                    pickFromDateTime(pickDate: true),
+              )),
+          Expanded(
+              child: DateDropDownField(
+                text: DateUtil.toTime(toDate),
+                onClicked: () => pickFromDateTime(pickDate: false),
+              )),
+        ],
+      ),
+    ],
+  );
 }
+
 
 class DateDropDownField extends StatelessWidget {
   final String text;
