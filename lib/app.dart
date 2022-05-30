@@ -20,11 +20,20 @@ class MyApp extends StatelessWidget {
             TaskProvider(),
         ),
       ],
-      child: MaterialApp(
-        title: "Taskr",
-        theme: Styles.theme,
-        home: const SplashScreen(),
-      ),
+      child: RootApp(),
+    );
+  }
+}
+
+class RootApp extends StatelessWidget {
+  const RootApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Taskr",
+      theme: Styles.theme,
+      home: const SplashScreen(),
     );
   }
 }
