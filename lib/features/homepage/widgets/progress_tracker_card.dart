@@ -37,7 +37,7 @@ class _MainTasksCardState extends State<MainTasksCard> {
                   ),
                   Column(
                     children: [
-                      Text('You have ${eventsProvider.events.length} tasks to do.' ,
+                      Text('You have ${eventsProvider.events.length} tasks' ,
                         style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
