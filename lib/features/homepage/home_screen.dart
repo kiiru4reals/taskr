@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:soluprov/features/homepage/progress_tracker_card.dart';
-import 'package:soluprov/features/homepage/tasks.dart';
+import 'package:soluprov/features/homepage/widgets/progress_tracker_card.dart';
+import 'package:soluprov/features/homepage/widgets/tasks.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
