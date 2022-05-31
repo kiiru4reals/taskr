@@ -17,12 +17,14 @@ class Task extends HiveObject {
   final String priority;
   @HiveField(6)
   final bool isAllDay;
-
+  @HiveField(7)
+  bool isComplete;
   Task(
       {required this.title,
       required this.description,
       required this.startDateTime,
       required this.toDateTime,
       required this.priority,
-      this.isAllDay = false});
+      this.isAllDay = false,
+      this.isComplete = false});
 }
