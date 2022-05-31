@@ -40,4 +40,14 @@ class TaskProvider extends ChangeNotifier {
     _tasks = box.values.toList();
     notifyListeners();
   }
+
+  // Mark task as complete
+  Future<void> markAsComplete(Task task) async {
+    Box<Task> box = await Hive.openBox<Task>(taskHiveBox);
+    await box.put(task.key, task);
+    _tasks = box.values.toList();
+    notifyListeners();
+  }
+
+
 }
