@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
 import 'package:soluprov/features/tasks/models/task_model.dart';
@@ -34,14 +35,29 @@ class _TasksState extends State<Tasks> {
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 Task task = eventsProvider.events[index];
-                return Dismissible(
-                  key: ObjectKey(task),
-                  direction: DismissDirection.endToStart,
-                  onDismissed: (direction) => eventsProvider.deleteTask(task),
-                  background: Container(
-                    alignment: Alignment.centerLeft,
-                    color: Colors.red,
-                    child: const Icon(Icons.delete_forever, color: Colors.white, size: 20,),
+                return Slidable(
+                  key: const ValueKey(0),
+                  startActionPane: ActionPane(
+                    motion: const ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        backgroundColor: const Color(0xFFFE4A49),
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete_forever,
+                        label: 'Delete',
+                        onPressed: (BuildContext context) => eventsProvider.deleteTask(task),
+                      ),
+                      SlidableAction(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        icon: Icons.task_alt,
+                        label: 'Completed',
+                        onPressed: (BuildContext context) => setState(() {
+                          task.isComplete = true;
+                          eventsProvider.markAsComplete(task);
+                        }),
+                      ),
+                    ],
                   ),
                   child: Material(
                     color: Colors.transparent,
@@ -52,12 +68,14 @@ class _TasksState extends State<Tasks> {
                             () {} /*=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsScreen(event: event,)))*/,
                         title: Text(
                           task.title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                        ),),
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
                         subtitle: Text(
-                          "",
-                          style: Theme.of(context).textTheme.bodySmall,
+                          task.isComplete == false ? "Incomplete": "Complete",
+                          style:
+                              const TextStyle(color: Colors.black, fontSize: 14),
                         ),
                       ),
                     ),
