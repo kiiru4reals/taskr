@@ -30,15 +30,23 @@ class _MainTasksCardState extends State<MainTasksCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
-                    children: [
-                      Text("Track your productivity", style: Theme.of(context).textTheme.headlineLarge,
+                    children: const [
+                      Text("Track your productivity", style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
                       ),
                     ],
                   ),
                   Column(
-                    children: [
+                    children:[
                       Text('You have ${eventsProvider.events.length} tasks' ,
-                        style: Theme.of(context).textTheme.bodySmall),
+                        style: const TextStyle(
+                          fontSize: 13,
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
                 ],

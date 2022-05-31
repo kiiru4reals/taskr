@@ -16,9 +16,13 @@ class _TasksState extends State<Tasks> {
   Widget build(BuildContext context) {
     final eventsProvider = Provider.of<TaskProvider>(context);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text("Tasks", style: Theme.of(context).textTheme.titleMedium),
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text("Tasks", style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+          color: Colors.purple,
+        ),),
       ),
       eventsProvider.events.isEmpty
           ? const Center(
@@ -70,12 +74,14 @@ class _TasksState extends State<Tasks> {
                           task.title,
                           style: const TextStyle(
                             fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         subtitle: Text(
                           task.isComplete == false ? "Incomplete": "Complete",
                           style:
-                              const TextStyle(color: Colors.black, fontSize: 14),
+                              const TextStyle(color: Colors.black, fontSize: 12),
                         ),
                       ),
                     ),
