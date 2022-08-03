@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/features/settings/services/settings_provider.dart';
+import 'package:soluprov/features/settings/domain/settings_repository.dart';
 
 class GeneralSettings extends StatefulWidget {
   const GeneralSettings({Key? key}) : super(key: key);
