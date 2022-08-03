@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soluprov/core/styles.dart';
 
 class VersionInfo extends StatelessWidget {
   const VersionInfo({Key? key}) : super(key: key);
@@ -11,20 +10,25 @@ class VersionInfo extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Text("App info",style: TextStyle(fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey),),
+          child: Text(
+            "App info",
+            style: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey),
+          ),
         ),
         Material(
           color: Colors.transparent,
           child: InkWell(
             splashColor: Colors.black12,
             child: InkWell(
-              onTap: (){},
+              onTap: () {},
               child: ListTile(
-                onTap: (){},
+                onTap: () {},
                 title: Text("Taskr"),
-                subtitle: Text("1.0", style: TextStyle(color: Colors.purple) ,),
+                subtitle: Text(
+                  "1.0",
+                  style: TextStyle(color: Colors.purple),
+                ),
               ),
             ),
           ),
