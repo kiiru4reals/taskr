@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:soluprov/features/settings/domain/entities/settings_model.dart';
+import 'package:soluprov/features/settings/data/models/settings_model.dart';
 
 class SettingsProvider extends ChangeNotifier {
   List<SettingsModel> _settings = [];
