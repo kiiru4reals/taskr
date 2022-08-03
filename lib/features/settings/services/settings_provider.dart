@@ -2,12 +2,12 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:soluprov/features/settings/models/settings_model.dart';
+import 'package:soluprov/features/settings/domain/entities/settings_model.dart';
 
 class SettingsProvider extends ChangeNotifier {
-
   List<SettingsModel> _settings = [];
-  UnmodifiableListView<SettingsModel> get settings => UnmodifiableListView(_settings);
+  UnmodifiableListView<SettingsModel> get settings =>
+      UnmodifiableListView(_settings);
 
   // Define boxes
   final String settingsHiveBox = "settings-box";
@@ -35,14 +35,11 @@ class SettingsProvider extends ChangeNotifier {
 
   bool get presetsPlace => _presetsPlace;*/
 
-
   Future<void> getSettings() async {
     Box<SettingsModel> box = await Hive.openBox<SettingsModel>(settingsHiveBox);
     _settings = box.values.toList();
     notifyListeners();
   }
-
-
 
   // show reminder on app screen
   bool _showreminderonappScreen = true;
