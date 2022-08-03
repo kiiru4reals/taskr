@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/core/config/styles.dart';
+import 'package:soluprov/config/styles.dart';
 import 'package:soluprov/features/settings/services/settings_provider.dart';
 import 'package:soluprov/features/splashscreen/splash_screen.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';

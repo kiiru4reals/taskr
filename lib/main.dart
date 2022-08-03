@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soluprov/app.dart';
-import 'package:soluprov/core/config/injector.dart';
+import 'package:soluprov/config/injector.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
