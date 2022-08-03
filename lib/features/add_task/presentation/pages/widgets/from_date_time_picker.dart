@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:soluprov/features/add_task/date_utils.dart';
 import 'package:soluprov/features/add_task/presentation/pages/widgets/date_dropdown_field.dart';
+import 'package:soluprov/features/tasks/models/task_model.dart';
 
 class FromDateTimePicker extends StatefulWidget {
-  const FromDateTimePicker({Key? key}) : super(key: key);
+  final Task? task;
+  const FromDateTimePicker({Key? key, this.task}) : super(key: key);
 
   @override
   _FromDateTimePickerState createState() => _FromDateTimePickerState();
@@ -12,6 +14,24 @@ class FromDateTimePicker extends StatefulWidget {
 class _FromDateTimePickerState extends State<FromDateTimePicker> {
   late DateTime fromDate;
   late DateTime toDate;
+
+  @override
+  void initState() {
+    // We fill the values for priority
+
+    super.initState();
+
+    if (widget.task == null) {
+      fromDate = DateTime.now();
+      toDate = DateTime.now().add(const Duration(hours: 2));
+    }
+  }
+
+  @override
+/*  void dispose() {
+    titleController.dispose();
+    super.dispose();
+  }*/
 
   Future pickFromDateTime({required bool pickDate}) async {
     final date = await pickDateTime(fromDate,
