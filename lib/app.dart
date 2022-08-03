@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/core/styles.dart';
+import 'package:soluprov/core/config/styles.dart';
 import 'package:soluprov/features/settings/services/settings_provider.dart';
 import 'package:soluprov/features/splashscreen/splash_screen.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) =>
-            SettingsProvider(),
+        ChangeNotifierProvider(
+          create: (_) => SettingsProvider(),
         ),
-        ChangeNotifierProvider(create: (_) =>
-            TaskProvider(),
+        ChangeNotifierProvider(
+          create: (_) => TaskProvider(),
         ),
       ],
       child: const RootApp(),
