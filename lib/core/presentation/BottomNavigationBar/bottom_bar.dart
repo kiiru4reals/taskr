@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soluprov/features/homepage/home_screen.dart';
-import 'package:soluprov/features/settings/settings.dart';
+import 'package:soluprov/features/settings/presentation/settings.dart';
 import 'package:soluprov/features/tasks/collective_events.dart';
 
 class BottomBarScreen extends StatefulWidget {
@@ -11,16 +11,12 @@ class BottomBarScreen extends StatefulWidget {
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-  List? _pages ;
+  List? _pages;
   int _selectedIndex = 0;
 
   @override
   void initState() {
-    _pages = [
-      const HomeScreen(),
-      const CollectiveEvents(),
-      const Settings()
-    ];
+    _pages = [const HomeScreen(), const CollectiveEvents(), const Settings()];
     super.initState();
   }
 
@@ -42,8 +38,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         child: Container(
           decoration: const BoxDecoration(
               border: Border(
-                top: BorderSide(width: 0.5),
-              )),
+            top: BorderSide(width: 0.5),
+          )),
           child: BottomNavigationBar(
             onTap: _selectedPage,
             backgroundColor: Colors.white,
