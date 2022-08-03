@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:soluprov/core/utils/event_local_data_source.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
-import 'package:soluprov/core/utils/event_data_source.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
@@ -32,11 +32,10 @@ class _DayAgendaState extends State<DayAgenda> {
     }
     return SfCalendarTheme(
       data: SfCalendarThemeData(
-        timeTextStyle: const TextStyle(fontSize: 14,color: Colors.black)
-      ),
+          timeTextStyle: const TextStyle(fontSize: 14, color: Colors.black)),
       child: SfCalendar(
         view: CalendarView.timelineDay,
-        dataSource: EventDataSource(provider.events),
+        dataSource: EventLocalDataSource(provider.events),
         initialDisplayDate: provider.selectedDate,
         appointmentBuilder: appointmentBuilder,
         headerHeight: 0,
@@ -47,15 +46,16 @@ class _DayAgendaState extends State<DayAgenda> {
         /*onTap: (details){
           if (details.appointments == null) return;
           final event = details.appointments!.first;
-          
+
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsScreen(event: event),
           ));
         },*/
       ),
     );
   }
-  Widget appointmentBuilder(BuildContext context,
-      CalendarAppointmentDetails details) {
+
+  Widget appointmentBuilder(
+      BuildContext context, CalendarAppointmentDetails details) {
     final event = details.appointments.first;
     return Container(
       decoration: BoxDecoration(
@@ -66,7 +66,8 @@ class _DayAgendaState extends State<DayAgenda> {
       height: details.bounds.height,
       child: Center(
         child: Text(
-          event.title, maxLines: 2,
+          event.title,
+          maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             color: Colors.black,
