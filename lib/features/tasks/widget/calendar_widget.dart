@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:soluprov/core/utils/event_local_data_source.dart';
+import 'package:soluprov/features/tasks/data/event_local_data_source.dart';
 import 'package:soluprov/features/tasks/services/task_provider.dart';
 import 'package:soluprov/features/tasks/widget/day_agenda.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
